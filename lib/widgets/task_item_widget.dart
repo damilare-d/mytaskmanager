@@ -1,12 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mytaskmanager/bloc/task_category/bloc/task_category_bloc.dart';
 import 'package:mytaskmanager/data/entities/entities.dart';
-
 import 'package:mytaskmanager/utils/utils.dart';
 import 'package:mytaskmanager/widgets/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TaskItemWidget extends StatelessWidget {
   final TaskItemEntity task;
@@ -16,32 +14,32 @@ class TaskItemWidget extends StatelessWidget {
   const TaskItemWidget({
     Key? key,
     required this.task,
-    required this.category, required this.animation,
+    required this.category,
+    required this.animation,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FadeTransition(
-        opacity: Tween<double>(
-          begin: 0,
-          end: 1,
-        ).animate(animation),
+      opacity: Tween<double>(
+        begin: 0,
+        end: 1,
+      ).animate(animation),
       child: GestureDetector(
         onTap: () {
           context.read<TaskCategoryBloc>().add(GetTaskCategory());
-          showCupertinoModalBottomSheet(
-            expand: false,
+          showModalBottomSheet(
+            // expand: false,
             context: context,
             enableDrag: true,
-            topRadius: Radius.circular(20),
+            // topRadius: Radius.circular(20),
             backgroundColor: Colors.transparent,
-            builder: (context) =>
-                TaskSheet(
-                    isUpdate: true,
-                    task: TaskWithCategoryItemEntity(
-                      taskItemEntity: task,
-                      taskCategoryItemEntity: category,
-                    )),
+            builder: (context) => TaskSheet(
+                isUpdate: true,
+                task: TaskWithCategoryItemEntity(
+                  taskItemEntity: task,
+                  taskCategoryItemEntity: category,
+                )),
           );
         },
         child: Container(
@@ -84,8 +82,8 @@ class TaskItemWidget extends StatelessWidget {
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: (task.isCompleted
-                            ? AppTheme.greenPastel
-                            : AppTheme.redPastel)
+                                ? AppTheme.greenPastel
+                                : AppTheme.redPastel)
                             .withOpacity(0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),

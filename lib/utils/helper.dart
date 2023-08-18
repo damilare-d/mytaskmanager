@@ -1,19 +1,14 @@
 import 'dart:io';
+
 import 'package:auto_animated/auto_animated.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
-import 'package:day_night_time_picker/lib/constants.dart';
-
-import 'package:mytaskmanager/utils/utils.dart';
-
-import 'package:mytaskmanager/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:mytaskmanager/bloc/task_category/bloc/task_category_bloc.dart';
 import 'package:mytaskmanager/data/entities/entities.dart';
-
-import 'utils.dart';
+import 'package:mytaskmanager/utils/utils.dart';
+import 'package:mytaskmanager/widgets/widgets.dart';
 
 class Helper {
   static showCustomSnackBar(BuildContext context,
@@ -40,11 +35,11 @@ class Helper {
     bool isUpdate = false,
   }) {
     context.read<TaskCategoryBloc>().add(GetTaskCategory());
-    showCupertinoModalBottomSheet(
-      expand: false,
+    showModalBottomSheet(
+      // expand: false,
       context: context,
       enableDrag: true,
-      topRadius: Radius.circular(20),
+      // topRad ius: Radius.circular(20),
       backgroundColor: Colors.transparent,
       builder: (context) => TaskSheet(
         task: task,

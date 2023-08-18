@@ -6,16 +6,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:mytaskmanager/bloc/task_category/bloc/task_category_bloc.dart';
 import 'package:mytaskmanager/bloc/tasks/bloc/tasks_bloc.dart';
 import 'package:mytaskmanager/data/entities/entities.dart';
-
-
-
 import 'package:mytaskmanager/utils/utils.dart';
 import 'package:mytaskmanager/widgets/widgets.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
 import '../routes/routes.dart';
-
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -25,7 +21,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
-    //setInitialCategory();
+    setInitialCategory();
     context.read<TaskCategoryBloc>().add(WatchTaskCategory());
     context.read<TaskBloc>().add(WatchOnGoingTask());
     context.read<TaskBloc>().add(WatchCompletedTask());
@@ -39,29 +35,25 @@ class _DashboardPageState extends State<DashboardPage> {
       context.read<TaskCategoryBloc>().add(InsertTaskCategory(
             taskCategoryItemEntity: TaskCategoryItemEntity(
               title: "School",
-              gradient:
-                  AppTheme.orangeGradient,
+              gradient: AppTheme.orangeGradient,
             ),
           ));
       context.read<TaskCategoryBloc>().add(InsertTaskCategory(
             taskCategoryItemEntity: TaskCategoryItemEntity(
               title: "Work",
-              gradient:
-                  AppTheme.toscaGradient,
+              gradient: AppTheme.toscaGradient,
             ),
           ));
       context.read<TaskCategoryBloc>().add(InsertTaskCategory(
             taskCategoryItemEntity: TaskCategoryItemEntity(
               title: "Health",
-              gradient:
-                  AppTheme.purpleGradient, 
+              gradient: AppTheme.purpleGradient,
             ),
           ));
       context.read<TaskCategoryBloc>().add(InsertTaskCategory(
             taskCategoryItemEntity: TaskCategoryItemEntity(
               title: "Other",
-              gradient:
-                  AppTheme.donkerGradient,
+              gradient: AppTheme.donkerGradient,
             ),
           ));
       getStorage.write(Keys.isInitial, false);
@@ -362,8 +354,7 @@ class _DashboardPageState extends State<DashboardPage> {
               child: CircleAvatar(
                 radius: 25,
                 backgroundColor: Colors.white,
-                child:
-                 AutoSizeText(
+                child: AutoSizeText(
                   (index + 1).toString(),
                   style: AppTheme.headline2,
                   minFontSize: 14,
